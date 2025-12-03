@@ -41,14 +41,14 @@ A comprehensive research project exploring how competitive interactions in self-
 
 ## 👥 Team Members
 
-| Name | Email | Role |
-|------|-------|------|
-| Charan Reddy Nandyala | cnand002@ucr.edu | Lead Developer |
-| Dhanush Chalicheemala | dchal007@ucr.edu | Algorithm Implementation |
-| Satyadev Gangineni | sgang024@ucr.edu | Analysis & Visualization |
+| Name |
+|------
+| Charan Reddy Nandyala|
+| Dhanush Chalicheemala |
+| Satyadev Gangineni |
 
 **Institution:** University of California, Riverside  
-**Course:** Advanced Machine Learning / Multi-Agent Systems  
+**Course:** Introduction to Reinforcement Learning 
 **Semester:** Fall 2024
 
 ---
