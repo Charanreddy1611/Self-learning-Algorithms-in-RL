@@ -49,7 +49,7 @@ A comprehensive research project exploring how competitive interactions in self-
 
 **Institution:** University of California, Riverside  
 **Course:** Introduction to Reinforcement Learning 
-**Semester:** Fall 2024
+**Semester:** Fall 2025
 
 ---
 
