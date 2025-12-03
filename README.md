@@ -442,7 +442,7 @@ Episodes end when:
 
 ---
 
-## 🧠 Algorithms
+##  Algorithms
 
 ### MAPPO (Multi-Agent Proximal Policy Optimization)
 
@@ -1239,184 +1239,7 @@ print(f"Best hyperparameters: {best['params']}")
 
 ---
 
-## 🔧 Troubleshooting
 
-### Common Issues and Solutions
-
-#### Issue 1: CUDA Out of Memory
-
-**Symptoms:**
-```
-RuntimeError: CUDA out of memory. Tried to allocate X GB
-```
-
-**Solutions:**
-1. **Reduce batch size:**
-```bash
-python training/train_mappo.py --batch-size 32
-```
-
-2. **Use CPU:**
-```bash
-python training/train_mappo.py --device cpu
-```
-
-3. **Clear cache:**
-```python
-import torch
-torch.cuda.empty_cache()
-```
-
-#### Issue 2: Training is Very Slow
-
-**Possible Causes:**
-- Running on CPU instead of GPU
-- Large batch size
-- Too many agents
-- Rendering enabled
-
-**Solutions:**
-1. **Verify GPU usage:**
-```python
-import torch
-print(f"CUDA available: {torch.cuda.is_available()}")
-print(f"GPU count: {torch.cuda.device_count()}")
-```
-
-2. **Disable rendering during training:**
-```python
-env = simple_tag_v3.parallel_env(render_mode=None)  # Not 'human'
-```
-
-3. **Profile code:**
-```bash
-python -m cProfile -o profile.stats training/train_mappo.py
-python -m pstats profile.stats
-```
-
-#### Issue 3: Rewards Not Improving
-
-**Symptoms:**
-- Rewards plateau early
-- No improvement after many episodes
-- Random-looking behavior
-
-**Debugging Steps:**
-
-1. **Check reward structure:**
-```python
-# Print rewards during training
-print(f"Predator rewards: {predator_rewards}")
-print(f"Prey rewards: {prey_rewards}")
-```
-
-2. **Verify network updates:**
-```python
-# Check if gradients are flowing
-for name, param in model.named_parameters():
-    if param.grad is not None:
-        print(f"{name}: {param.grad.norm()}")
-```
-
-3. **Inspect observations:**
-```python
-# Are observations normalized?
-obs = env.reset()
-print(f"Obs shape: {obs.shape}")
-print(f"Obs range: [{obs.min()}, {obs.max()}]")
-```
-
-**Solutions:**
-- Increase learning rate
-- Add entropy bonus for more exploration
-- Normalize observations
-- Check for bugs in reward calculation
-
-#### Issue 4: Import Errors
-
-**Symptoms:**
-```
-ModuleNotFoundError: No module named 'pettingzoo'
-```
-
-**Solutions:**
-1. **Verify installation:**
-```bash
-pip list | grep pettingzoo
-```
-
-2. **Reinstall dependencies:**
-```bash
-pip install -r requirements.txt --upgrade
-```
-
-3. **Check Python path:**
-```python
-import sys
-print(sys.path)
-```
-
-#### Issue 5: Environment Rendering Issues
-
-**Symptoms:**
-- Black screen
-- Pygame errors
-- Display not updating
-
-**Solutions:**
-1. **Install pygame properly:**
-```bash
-pip uninstall pygame
-pip install pygame==2.1.0
-```
-
-2. **Check display:**
-```python
-import pygame
-pygame.init()
-```
-
-3. **For headless systems:**
-```bash
-# Use virtual display
-export DISPLAY=:0
-xvfb-run -a python training/evaluate.py --render
-```
-
-#### Issue 6: Checkpoint Loading Fails
-
-**Symptoms:**
-```
-RuntimeError: Error loading checkpoint
-KeyError: 'state_dict'
-```
-
-**Solutions:**
-1. **Verify checkpoint format:**
-```python
-checkpoint = torch.load('checkpoint.pt')
-print(checkpoint.keys())
-```
-
-2. **Load with error handling:**
-```python
-try:
-    model.load_state_dict(checkpoint['state_dict'], strict=False)
-except Exception as e:
-    print(f"Error loading: {e}")
-```
-
-### Getting Help
-
-If you encounter issues not covered here:
-
-1. **Check the logs:** Look for error messages in console output
-2. **Enable debug mode:** Add `--debug` flag to training scripts
-3. **Simplify the problem:** Try with fewer agents/episodes
-4. **Check dependencies:** Ensure all packages are up to date
-5. **Contact us:** See [Contact](#-contact) section
-
----
 
 ## 🚀 Extensions & Future Work
 
@@ -1606,42 +1429,16 @@ This project is for **educational purposes** as part of a university course proj
 - ✅ Academic and educational use
 - ✅ Personal learning and experimentation
 - ✅ Research purposes with proper attribution
-- ❌ Commercial use without permission
 
 ---
 
-## 📞 Contact
 
-### Team Members
-
-**Charan Reddy Nandyala**
-- 📧 Email: cnand002@ucr.edu
-- 🎓 Role: Lead Developer, Project Coordinator
-
-**Dhanush Chalicheemala**
-- 📧 Email: dchal007@ucr.edu
-- 🎓 Role: Algorithm Implementation, Optimization
-
-**Satyadev Gangineni**
-- 📧 Email: sgang024@ucr.edu
-- 🎓 Role: Analysis, Visualization, Documentation
-
-### Questions or Issues?
-
-- 📝 **Bug Reports:** Open an issue on GitHub
-- 💡 **Feature Requests:** Open an issue with [Feature Request] tag
-- 📧 **General Questions:** Email any team member
-- 🤝 **Collaboration:** Contact Charan Reddy Nandyala
-
----
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **PettingZoo Team** for the excellent multi-agent environment framework
 - **OpenAI** for pioneering work in PPO and self-play
 - **DeepMind** for AlphaStar and league training inspiration
-- **UC Riverside** for supporting this research project
-- **Course Instructor** for guidance and feedback
+
 
 ---
 
@@ -1649,6 +1446,5 @@ This project is for **educational purposes** as part of a university course proj
 
 ### ⭐ If you find this project useful, please consider starring it on GitHub! ⭐
 
-**Built with ❤️ by the UCR Multi-Agent RL Team**
 
 </div>
